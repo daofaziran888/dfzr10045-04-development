@@ -24,6 +24,9 @@ from app.services.access_grant import AccessGrantService
 from app.services.usage_meter import UsageMeterService
 from app.services.incident_log import IncidentLogService
 from app.services.contract_audit import ContractAuditService
+from app.services.fetch_receipt import FetchReceiptService
+from app.services.source_batch import SourceBatchService
+from app.services.delivery_segment import DeliverySegmentService
 
 SERVICES: dict[str, BaseModuleService] = {
     "data_contract": DataContractService(),
@@ -48,6 +51,9 @@ SERVICES: dict[str, BaseModuleService] = {
     "usage_meter": UsageMeterService(),
     "incident_log": IncidentLogService(),
     "contract_audit": ContractAuditService(),
+    "fetch_receipt": FetchReceiptService(),
+    "source_batch": SourceBatchService(),
+    "delivery_segment": DeliverySegmentService(),
 }
 
 

@@ -29,6 +29,13 @@ from app.integration.audit_trail import (
     record_audit_entry,
     verify_audit_chain,
 )
+from app.integration.subscription_fetch_chain import (
+    fetch_subscription_batch,
+    continue_fetch_segment,
+    refetch_snapshot_segment,
+    inspect_receipt,
+    switch_column_promise_version,
+)
 
 __all__ = [
     "register_contract_chain",
@@ -45,4 +52,9 @@ __all__ = [
     "revoke_expired_grants",
     "record_audit_entry",
     "verify_audit_chain",
+    "fetch_subscription_batch",
+    "continue_fetch_segment",
+    "refetch_snapshot_segment",
+    "inspect_receipt",
+    "switch_column_promise_version",
 ]

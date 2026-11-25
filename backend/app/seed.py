@@ -230,8 +230,14 @@ SEED_ROWS: dict[str, list[dict[str, Any]]] = {
     "result_set": [
         {
             "id": 1, "快照编号": "SNAP-0001", "所属计划": "1",
-            "绑定版本": "v2.1", "快照行数": "47",
-            "列摘要值": "{'user_id':'A12345678','event_type':'click'}",
+            "绑定版本": "v2.1", "快照行数": "5",
+            "列摘要值": "2cols:ef6bac48c37ce194",
+            "可读列": "user_id,event_type",
+            "承诺版本": "v2.1", "承诺版本编号": "VER-CTR-001",
+            "承诺摘要": "a0856d408d06d993",
+            "来源批次": "BATCH-0001", "订阅编号": "SUB-001",
+            "消费方应用": "APP-ANALYTICS", "契约编号": "CTR-001",
+            "归属标识": "SUB-001@EP-001", "回执编号": "RCPT-0001",
             "有效期": (_now + timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%S"),
             "引用次数": "3", "生成时间": _now.strftime("%Y-%m-%d %H:%M:%S"),
             "status": "可读", "pending": False, "abnormal": False,
@@ -510,6 +516,121 @@ SEED_ROWS: dict[str, list[dict[str, Any]]] = {
             "操作者标识": "admin-chen",
             "操作时间": "2026-10-15",
             "status": "已核查", "pending": False, "abnormal": False,
+        },
+    ],
+    "source_batch": [
+        {
+            "id": 1, "批次编号": "BATCH-0001", "契约编号": "CTR-001",
+            "绑定版本": "v2.1", "来源标识": "SRC-BEACON-USER-EVENT",
+            "数据行数": "5", "列集合": "user_id,event_type,event_time,device_fp,internal_notes",
+            "数据水位": "2026-11-21T12:00:00", "入库时间": "2026-11-21 12:03:00",
+            "status": "可读", "pending": False, "abnormal": False,
+        },
+        {
+            "id": 2, "批次编号": "BATCH-0002", "契约编号": "CTR-002",
+            "绑定版本": "v1.3", "来源标识": "SRC-PAY-TXN",
+            "数据行数": "3", "列集合": "txn_id,merchant_id,txn_amount,txn_time",
+            "数据水位": "2026-11-21T11:30:00", "入库时间": "2026-11-21 11:32:00",
+            "status": "可读", "pending": False, "abnormal": False,
+        },
+    ],
+    "fetch_receipt": [
+        {
+            "id": 1, "回执编号": "RCPT-0001", "订阅编号": "SUB-001",
+            "消费方应用": "APP-ANALYTICS", "所属端点": "EP-001",
+            "契约编号": "CTR-001", "来源批次": "BATCH-0001",
+            "承诺版本": "v2.1", "承诺版本编号": "VER-CTR-001",
+            "承诺摘要": "a0856d408d06d993", "可读列": "user_id,event_type",
+            "授权编号": "GRANT-0001", "快照编号": "SNAP-0001",
+            "page_size": "50", "总行数": "5", "总页数": "1",
+            "已交付页数": "1", "归属标识": "SUB-001@EP-001",
+            "领取时间": "2026-11-21 12:10:00",
+            "status": "已完成", "pending": False, "abnormal": False,
+        },
+    ],
+    "delivery_segment": [
+        {
+            "id": 1, "分段编号": "SEG-0001", "所属回执": "RCPT-0001",
+            "快照编号": "SNAP-0001", "页码": "1", "承诺版本": "v2.1",
+            "可读列": "user_id,event_type", "起始行": "0", "结束行": "5",
+            "行数": "5", "交付时间": "2026-11-21 12:10:00",
+            "status": "已交付", "pending": False, "abnormal": False,
+        },
+    ],
+    "_delivery_row": [
+        {"分段编号": "SEG-0001", "行序": 0, "user_id": "U00000001", "event_type": "click"},
+        {"分段编号": "SEG-0001", "行序": 1, "user_id": "U00000002", "event_type": "view"},
+        {"分段编号": "SEG-0001", "行序": 2, "user_id": "U00000003", "event_type": "purchase"},
+        {"分段编号": "SEG-0001", "行序": 3, "user_id": "U00000004", "event_type": "login"},
+        {"分段编号": "SEG-0001", "行序": 4, "user_id": "U00000005", "event_type": "logout"},
+    ],
+    "_snapshot_rows": [
+        {
+            "快照编号": "SNAP-0001", "行序": 0,
+            "user_id": "U00000001", "event_type": "click",
+        },
+        {
+            "快照编号": "SNAP-0001", "行序": 1,
+            "user_id": "U00000002", "event_type": "view",
+        },
+        {
+            "快照编号": "SNAP-0001", "行序": 2,
+            "user_id": "U00000003", "event_type": "purchase",
+        },
+        {
+            "快照编号": "SNAP-0001", "行序": 3,
+            "user_id": "U00000004", "event_type": "login",
+        },
+        {
+            "快照编号": "SNAP-0001", "行序": 4,
+            "user_id": "U00000005", "event_type": "logout",
+        },
+    ],
+    "_source_batch_row": [
+        {
+            "id": 1, "批次编号": "BATCH-0001", "行序": 0,
+            "user_id": "U00000001", "event_type": "click",
+            "event_time": "2026-11-21T10:00:00", "device_fp": "FP-A1",
+            "internal_notes": "灰度抽样命中",
+        },
+        {
+            "id": 2, "批次编号": "BATCH-0001", "行序": 1,
+            "user_id": "U00000002", "event_type": "view",
+            "event_time": "2026-11-21T10:05:00", "device_fp": "FP-A2",
+            "internal_notes": "",
+        },
+        {
+            "id": 3, "批次编号": "BATCH-0001", "行序": 2,
+            "user_id": "U00000003", "event_type": "purchase",
+            "event_time": "2026-11-21T10:11:00", "device_fp": "FP-A3",
+            "internal_notes": "含优惠券抵扣",
+        },
+        {
+            "id": 4, "批次编号": "BATCH-0001", "行序": 3,
+            "user_id": "U00000004", "event_type": "login",
+            "event_time": "2026-11-21T10:20:00", "device_fp": "FP-A4",
+            "internal_notes": "",
+        },
+        {
+            "id": 5, "批次编号": "BATCH-0001", "行序": 4,
+            "user_id": "U00000005", "event_type": "logout",
+            "event_time": "2026-11-21T10:44:00", "device_fp": "FP-A5",
+            "internal_notes": "",
+        },
+        {
+            "id": 6, "批次编号": "BATCH-0002", "行序": 0,
+            "txn_id": "TXN-0001", "merchant_id": "MER-01",
+            "txn_amount": "120.00", "txn_time": "2026-11-21T09:00:00",
+        },
+        {
+            "id": 7, "批次编号": "BATCH-0002", "行序": 1,
+            "txn_id": "TXN-0002", "merchant_id": "MER-02",
+            "txn_amount": "88.50", "txn_time": "2026-11-21T09:30:00",
+        },
+        {
+            "id": 8, "批次编号": "BATCH-0002", "行序": 2,
+            "txn_id": "TXN-0003", "merchant_id": "MER-01",
+            "txn_amount": "340.00", "txn_time": "2026-11-21T11:00:00",
         },
     ],
 }
